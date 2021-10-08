@@ -1,0 +1,34 @@
+<!-- Title -->
+<title>
+  VTEX API Request | Enviar relatório de produtos
+</title>
+</head>
+<body>
+  <div id="home" class="content">
+    <div>
+      <div class="ball top"></div>
+      <div class="ball bottom"></div>
+    </div>
+
+    <main>
+      <div class="container">
+        <%- include("message-box"); %>
+        <section>
+          <h2>Relatório de produtos</h2>
+          <p>Insira o seu e-mail abaixo e clique no botão Enviar para receber o relatório de produtos.</p>
+          <form action="/" method="POST">
+            <label for="email" class="scr-only">E-mail</label>
+            <input type="email" name="email" id="email" placeholder="E-mail" <%
+            if (inputError.includes("email")) { %>style="border: .2rem solid
+            var(--red);"<% }; %> <% if (formData.email) { %>value="<%-
+            formData.email; %>"<% }; %>>
+            <button>
+              <img src="/images/send.svg" alt="Enviar" />
+              Enviar
+            </button>
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
