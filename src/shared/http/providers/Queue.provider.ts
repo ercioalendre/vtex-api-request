@@ -1,28 +1,17 @@
-import Queue from "bull";
-import GenerateReportJob from "src/jobs/GenerateReport.job";
+import { Job, Queue } from "bullmq";
 
-const redis = {
+export const connection = {
   port: Number(process.env.REDIS_PORT) || 0,
   host: process.env.REDIS_HOST || "",
   password: process.env.REDIS_PASS || "",
 };
 
-const queue = new Queue(GenerateReportJob.key, { redis });
+export default class CreateQueue {
+  static async execute(queueName: string, data: Record<string, unknown>): Promise<Job> {
+    const queue = new Queue(queueName, {
+      connection,
+    });
 
-queue.on("active", job => {
-  console.log("Job active", job.data);
-});
-
-queue.on("error", job => {
-  console.log("Job error", job);
-});
-
-queue.on("failed", job => {
-  console.log("Job failed", job);
-});
-
-queue.on("completed", job => {
-  console.log("Job completed", job.data);
-});
-
-export default queue;
+    return await queue.add(queueName, data);
+  }
+}

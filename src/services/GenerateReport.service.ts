@@ -1,19 +1,10 @@
-import Queue from "@shared/http/providers/Queue.provider";
-import { Job } from "bull";
+import CreateQueue from "@shared/http/providers/Queue.provider";
 
 class GenerateReportService {
-  public async execute(email: string): Promise<Job> {
-    // const user = {
-    //   id: 123,
-    //   name: "Ercio Alendre",
-    //   email: "ercio.alendre@gmail.com",
-    //   password: "teste123",
-    // };
+  public async execute(email: string) {
+    await CreateQueue.execute("GenerateReport", { email });
 
-    const sendMail = await Queue.add({ email });
-
-    // console.log(sendMail);
-    return sendMail;
+    console.log(`Enqueued a report request to be sent to ${email}`);
   }
 }
 

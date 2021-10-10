@@ -28,26 +28,15 @@ export default class MainController {
     }
 
     const { email } = req.body;
-    const generateReport = await GenerateReportService.execute(email);
+    await GenerateReportService.execute(email);
 
-    if (generateReport) {
-      renderPage(
-        "Relatório gerado com sucesso! Em breve você irá recebê-lo no e-mail informado.",
-        "",
-        res,
-        "email-box",
-        "success",
-        200,
-      );
-    } else {
-      renderPage(
-        "Não foi possível gerar o relatório! Por favor, tente novamente mais tarde.",
-        "",
-        res,
-        "email-box",
-        "error",
-        200,
-      );
-    }
+    renderPage(
+      "Relatório gerado com sucesso! Em breve você irá recebê-lo no e-mail informado.",
+      "",
+      res,
+      "email-box",
+      "success",
+      200,
+    );
   }
 }
