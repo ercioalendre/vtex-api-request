@@ -13,8 +13,8 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-      "@config/*": [
-        "src/config/*"
+      "@providers/*": [
+        "src/providers/*"
       ],
       "@services/*": [
         "src/services/*"
