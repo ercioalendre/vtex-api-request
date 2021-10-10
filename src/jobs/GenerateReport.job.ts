@@ -1,4 +1,4 @@
-import CreateQueue from "@shared/http/providers/Queue.provider";
+import CreateQueue from "@providers/Queue.provider";
 import axios from "axios";
 
 export default class GenerateReportJob {

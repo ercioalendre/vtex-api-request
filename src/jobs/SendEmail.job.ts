@@ -1,4 +1,4 @@
-import Mail from "@shared/http/providers/Mail.provider";
+import Mail from "@providers/Mail.provider";
 
 export default class SendEmailJob {
   static async handle(data: Record<string, unknown>): Promise<void> {

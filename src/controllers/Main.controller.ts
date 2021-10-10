@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import renderPage from "@shared/http/providers/renderPage.provider";
+import renderPage from "@providers/renderPage.provider";
 import GenerateReportService from "@services/GenerateReport.service";
 
 export default class MainController {

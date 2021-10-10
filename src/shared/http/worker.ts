@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { Job, Worker } from "bullmq";
-import { connection } from "@shared/http/providers/Queue.provider";
+import { connection } from "@providers/Queue.provider";
 import * as jobs from "src/jobs";
 
 const concurrency = Number(process.env.BULLMQ_CONCURRENCY) || 1;
