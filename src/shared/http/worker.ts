@@ -5,15 +5,16 @@ import * as jobs from "src/jobs";
 
 const concurrency = Number(process.env.BULLMQ_CONCURRENCY) || 1;
 
-Object.entries(jobs).forEach(([queue, jobClass]) => {
+Object.entries(jobs).forEach(([queueName, jobClass]) => {
   const worker = new Worker(
-    queue,
+    queueName,
     async (job: Job) => {
       jobClass.handle(job.data);
     },
     {
       connection,
       concurrency,
+      limiter: { max: 1, duration: 1000 },
     },
   );
 
